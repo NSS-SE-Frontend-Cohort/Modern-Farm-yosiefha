@@ -3,7 +3,8 @@ import { createAsparagus } from "./seeds/asparagus.js"
 import { addPlant, usePlants } from './field.js';
 
 import { plantSeeds } from './tractor.js';
-
+import { harvestPlants } from './harvester.js';
+import { Catalog } from './catalog.js';
 const asparagusSeed = createAsparagus()
 //console.log(asparagusSeed)
 addPlant(asparagusSeed);
@@ -22,3 +23,9 @@ const plantsInField = usePlants();
 console.log(plantsInField);
 console.log("Welcome to the main module")
 
+// Harvest plant 
+const harvestedSeeds = harvestPlants(plantsInField);
+
+// Log the harvested seeds to verify the output
+console.log(harvestedSeeds);
+Catalog(harvestedSeeds);
