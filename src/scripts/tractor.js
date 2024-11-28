@@ -4,6 +4,7 @@ import { createPotato } from './seeds/potato.js';
 import { createSoybean } from './seeds/soybean.js';
 import { createCorn } from './seeds/corn.js';
 import { createWheat } from './seeds/wheat.js';
+import { createSunflower } from "./seeds/sunflower.js";
 
 export const plantSeeds = (plantingPlan) => 
     plantingPlan.forEach(row => 
@@ -14,6 +15,7 @@ export const plantSeeds = (plantingPlan) =>
                 plantType === "Soybean" ? createSoybean() :
                 plantType === "Corn" ? createCorn() :
                 plantType === "Wheat" ? createWheat() :
+                plantType === "Sunflower" ? createSunflower():
                 console.error(`Unknown plant type: ${plantType}`)
             )
         )
