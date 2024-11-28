@@ -8,7 +8,7 @@ export const harvestPlants = (plantsArray) => {
             ? Math.floor(plant.output / 2)
             : plant.output;                
 
-        // const harvestAmount = plant.output; 
+        
         for (let i = 0; i < harvestAmount; i++) {
             harvested.push(plant);
         }
