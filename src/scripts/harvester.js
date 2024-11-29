@@ -13,6 +13,6 @@ export const harvestPlants = (plantsArray) => {
             harvested.push(plant);
         }
     }
-
-    return harvested; 
+    
+    return  harvested.sort((a, b) => a.type.localeCompare(b.type));
 }
