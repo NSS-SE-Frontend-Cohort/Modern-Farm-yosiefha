@@ -6,17 +6,17 @@ import { createCorn } from './seeds/corn.js';
 import { createWheat } from './seeds/wheat.js';
 import { createSunflower } from "./seeds/sunflower.js";
 
+let creationStrategy = new Map();
+creationStrategy.set("Asparagus" , createAsparagus);
+creationStrategy.set("Potato" , createPotato);
+creationStrategy.set("Corn" , createCorn);
+creationStrategy.set("Soybean" , createSoybean);
+creationStrategy.set("Wheat" , createWheat);
+creationStrategy.set("Sunflower" , createSunflower);
+
 export const plantSeeds = (plantingPlan) => 
-    plantingPlan.forEach(row => 
-        row.forEach(plantType => 
-            addPlant(
-                plantType === "Asparagus" ? createAsparagus() :
-                plantType === "Potato" ? createPotato() :
-                plantType === "Soybean" ? createSoybean() :
-                plantType === "Corn" ? createCorn() :
-                plantType === "Wheat" ? createWheat() :
-                plantType === "Sunflower" ? createSunflower():
-                console.error(`Unknown plant type: ${plantType}`)
-            )
-        )
-    );
+    plantingPlan.flat(1).forEach(plantType => {
+            if(!creationStrategy.has(plantType)) console.error(`Unknown plant type: ${plantType}`)
+            const seedConstructorFn = creationStrategy.get(plantType);
+            addPlant(seedConstructorFn())
+    });
